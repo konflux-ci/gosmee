@@ -1,0 +1,4 @@
+[submodule "gosmee"]
+	path = gosmee
+	url = https://github.com/chmouel/gosmee.git
+	branch = v0.32.1
