@@ -2,7 +2,7 @@
 # The gosmee/ directory is the upstream submodule. Go modules are downloaded
 # before compile so Konflux can prefetch them and then build with no network.
 
-ARG GOSMEE_VERSION
+ARG GOSMEE_VERSION=v0.32.1
 
 FROM registry.access.redhat.com/ubi10/go-toolset@sha256:78049192391115cdcc3a794bf0e7295a1f54fbb110c0a832e6b1254dbd15239d AS builder
 

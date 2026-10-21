@@ -1,16 +1,36 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>konflux-ci/mintmaker//config/renovate/renovate.json"],
   "git-submodules": {
     "enabled": true,
     "versioning": "semver"
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Track chmouel/gosmee releases in Containerfile ARG GOSMEE_VERSION",
+      "fileMatch": ["^Containerfile$"],
+      "matchStrings": [
+        "ARG GOSMEE_VERSION=(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "gosmee",
+      "packageNameTemplate": "chmouel/gosmee",
+      "extractVersionTemplate": "^v?(?<version>.*)$",
+      "versioningTemplate": "semver",
+      "autoReplaceStringTemplate": "ARG GOSMEE_VERSION=v{{{newValue}}}"
+    }
+  ],
   "packageRules": [
     {
       "description": "Disable digest updates for gosmee submodule (keep patch/minor/major via tags)",
       "matchDepNames": ["gosmee"],
       "matchUpdateTypes": ["digest"],
       "enabled": false
+    },
+    {
+      "description": "Bump gosmee submodule and Containerfile GOSMEE_VERSION together",
+      "groupName": "gosmee upstream",
+      "matchDepNames": ["gosmee"]
     }
   ]
 }
