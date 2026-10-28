@@ -8,7 +8,9 @@
     {
       "customType": "regex",
       "description": "Track chmouel/gosmee releases in Containerfile ARG GOSMEE_VERSION",
-      "fileMatch": ["^Containerfile$"],
+      "managerFilePatterns": [
+        "/^Containerfile$/"
+      ],
       "matchStrings": [
         "ARG GOSMEE_VERSION=(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
       ],
