@@ -20,7 +20,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=${TARGETARCH} \
     GOFLAGS="-buildvcs=false" go build -mod=vendor -trimpath \
     -ldflags="-s -w" -o /tmp/gosmee .
 
-FROM registry.access.redhat.com/ubi10/ubi-micro@sha256:1c105e547de5d9e0bc20d06ebabee73b20bc6bba994c50ae3e207684fd8bef2b
+# ubi-micro omits grep/awk entirely, which breaks the smee-sidecar liveness
+# probe (check-smee-health.sh) deterministically. ubi-minimal keeps the same
+# hermeticity (binary is still built in the separate go-toolset stage above).
+FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:ab67cd02caf8706e34a695a1432ebe965934f6128ec352a6c3f4048b43a4fb5e
 
 ARG GOSMEE_VERSION
 
