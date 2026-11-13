@@ -23,7 +23,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=${TARGETARCH} \
 # ubi-micro omits grep/awk entirely, which breaks the smee-sidecar liveness
 # probe (check-smee-health.sh) deterministically. ubi-minimal keeps the same
 # hermeticity (binary is still built in the separate go-toolset stage above).
-FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:c039ecb9ac9db2db85e78b332d66521f6ce401cf812006a27bc7827018eac4a2
+FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:fb2f7f857cc60d88e3fad19da505083a682ca4569d7b55a61f64aaa43641f741
 
 ARG GOSMEE_VERSION
 
