@@ -5,7 +5,7 @@
 
 ARG GOSMEE_VERSION=v0.32.1
 
-FROM registry.access.redhat.com/ubi10/go-toolset@sha256:05619897582acb01ee5dd3eaa2934a7cc2f24409a255142a704b734ef07b68a6 AS builder
+FROM registry.access.redhat.com/ubi10/go-toolset@sha256:7a7744f41377aafd73af5abe5b97eae38644d68b787f73fa185abdfae45300f7 AS builder
 
 ARG GOSMEE_VERSION
 ARG TARGETARCH
